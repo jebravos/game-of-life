@@ -72,6 +72,15 @@ class GameOfLifeTests {
                     .forEach(state -> assertThat(state).isEqualTo(DEAD));
         }
 
+        @DisplayName("Any live cell with two or three live neighbours lives on to the next generation")
+        @Test
+        void liveCellsWithTwoOrThreeLiveNeighboursWillSurvive() {
+            Stream.of(alive(2),
+                            alive(3))
+                    .map(Cell::getNextState)
+                    .forEach(state -> assertThat(state).isEqualTo(ALIVE));
+        }
+
 
         @DisplayName("Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction")
         @Test
