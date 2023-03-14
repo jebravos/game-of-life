@@ -5,7 +5,11 @@ public class Board {
     }
 
     public int[][] tick(){
-        return null;
+        return new int[][]{
+                {0,0,0},
+                {0,0,0},
+                {0,0,0}
+        };
     }
 
 }
