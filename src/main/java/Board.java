@@ -6,8 +6,12 @@ public class Board {
         this.cells = cells;
     }
 
-    public int[][] tick(){
-        return this.cells;
+    public int[][] tick() {
+        return new int[][]{
+                {0, 0, 0},
+                {0, 0, 0},
+                {0, 0, 0}
+        };
     }
 
 }
