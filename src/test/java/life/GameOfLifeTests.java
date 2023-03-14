@@ -1,9 +1,14 @@
+package life;
+
+import life.Board;
+import life.Cell;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.util.stream.Stream;
 
+import static life.Cell.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class GameOfLifeTests {
@@ -45,13 +50,26 @@ class GameOfLifeTests {
 
         @DisplayName("Any live cell with fewer than two live neighbours dies, as if by underpopulation")
         @Test
-        void cellShouldBeDeadAfterATick() {
+        void liveCellShouldBeDeadAfterATickByUnderpopulation() {
 
-            Stream.of(Cell.alive(1),
-                            Cell.alive(0))
+            Stream.of(alive(1),
+                            alive(0))
                     .map(Cell::getNextState)
-                    .forEach(state -> assertThat(state).isEqualTo(0));
+                    .forEach(state -> assertThat(state).isEqualTo(DEAD));
 
+        }
+
+
+        @DisplayName("Any live cell with more than three live neighbours dies, as if by overpopulation")
+        @Test
+        void liveCellsWithMoreThanThreeLiveNeighboursWillDie() {
+            Stream.of(alive(4),
+                            alive(5),
+                            alive(6),
+                            alive(7),
+                            alive(8))
+                    .map(Cell::getNextState)
+                    .forEach(state -> assertThat(state).isEqualTo(DEAD));
         }
 
     }
