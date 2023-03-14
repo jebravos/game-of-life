@@ -35,13 +35,6 @@ public class Cell {
 
     public int getNextState() {
 
-        if (isAlive() && numberOfAliveNeighbours < 2) {
-            return DEAD;
-        }
-
-        if (isAlive() && numberOfAliveNeighbours > 3) {
-            return DEAD;
-        }
 
         if (isAlive() && (numberOfAliveNeighbours == 2 || numberOfAliveNeighbours == 3)) {
             return ALIVE;
@@ -51,7 +44,7 @@ public class Cell {
             return ALIVE;
         }
 
-        return 99;
+        return DEAD;
     }
 }
 
