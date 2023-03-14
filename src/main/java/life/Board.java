@@ -1,3 +1,5 @@
+package life;
+
 public class Board {
 
     private int[][] cells;

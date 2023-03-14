@@ -1,3 +1,5 @@
+package life;
+
 public class Cell {
 
     public static final int ALIVE = 1;
@@ -18,6 +20,10 @@ public class Cell {
         return new Cell(ALIVE, numberOfAliveNeighbours);
     }
 
+    public static Cell dead(int numberOfAliveNeighbours) {
+        return new Cell(DEAD, numberOfAliveNeighbours);
+    }
+
 
     public boolean isAlive() {
         return ALIVE == state;
@@ -29,7 +35,11 @@ public class Cell {
             return DEAD;
         }
 
-        return ALIVE;
+        if (isAlive() && numberOfAliveNeighbours > 3) {
+            return DEAD;
+        }
+
+        return 99;
     }
 }
 
