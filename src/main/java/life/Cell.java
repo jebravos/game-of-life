@@ -43,6 +43,10 @@ public class Cell {
             return DEAD;
         }
 
+        if (isAlive() && (numberOfAliveNeighbours == 2 || numberOfAliveNeighbours == 3)) {
+            return ALIVE;
+        }
+
         if (isDead() && numberOfAliveNeighbours == 3) {
             return ALIVE;
         }
