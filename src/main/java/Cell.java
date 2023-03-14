@@ -1,7 +1,7 @@
 public class Cell {
 
-    private static final int ALIVE = 1;
-    private static final int DEAD = 0;
+    public static final int ALIVE = 1;
+    public static final int DEAD = 0;
 
     private int state;
     private int numberOfAliveNeighbours;
@@ -14,16 +14,22 @@ public class Cell {
         this.numberOfAliveNeighbours = numberOfAliveNeighbours;
     }
 
+    public static Cell alive(int numberOfAliveNeighbours) {
+        return new Cell(ALIVE, numberOfAliveNeighbours);
+    }
+
+
     public boolean isAlive() {
         return ALIVE == state;
     }
 
     public int getNextState() {
+
         if (isAlive() && numberOfAliveNeighbours < 2) {
             return DEAD;
         }
 
         return ALIVE;
-
     }
 }
+

@@ -47,8 +47,8 @@ class GameOfLifeTests {
         @Test
         void cellShouldBeDeadAfterATick() {
 
-            Stream.of(new Cell(1, 1),
-                            new Cell(1, 0))
+            Stream.of(Cell.alive(1),
+                            Cell.alive(0))
                     .map(Cell::getNextState)
                     .forEach(state -> assertThat(state).isEqualTo(0));
 
