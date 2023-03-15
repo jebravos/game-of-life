@@ -31,11 +31,11 @@ public class Cell {
     }
 
     public boolean isAlive() {
-        return ALIVE == state;
+        return !isDead();
     }
 
     public boolean isDead(){
-        return !isAlive();
+        return DEAD == state;
     }
 
     public int getNextState() {
