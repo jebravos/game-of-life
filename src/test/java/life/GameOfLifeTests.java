@@ -86,7 +86,7 @@ class GameOfLifeTests {
                             alive(7),
                             alive(8))
                     .map(Cell::getNextState)
-                    .forEach(state -> assertThat(state).isEqualTo(DEAD));
+                    .forEach(nextState -> assertThat(nextState).isEqualTo(DEAD));
         }
 
         @DisplayName("Any live cell with two or three live neighbours lives on to the next generation")

@@ -6,13 +6,19 @@ public class Cell {
     public static final int DEAD = 0;
 
     private int state;
-    private int numberOfAliveNeighbours;
+    private long numberOfAliveNeighbours;
 
     private Cell() {
     }
 
-    public Cell(final int state, final int numberOfAliveNeighbours) {
-        this.state = state;
+    public Cell(final int state, final long numberOfAliveNeighbours) {
+
+        if (state == 0) {
+            this.state = DEAD;
+        } else {
+            this.state = ALIVE;
+        }
+
         this.numberOfAliveNeighbours = numberOfAliveNeighbours;
     }
 
