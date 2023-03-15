@@ -1,7 +1,5 @@
 package life;
 
-import life.Board;
-import life.Cell;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -42,6 +40,25 @@ class GameOfLifeTests {
             Board oneAliveBoard = new Board(ONE_ALIVE_BOARD);
 
             assertThat(oneAliveBoard.tick()).isEqualTo(DEAD_BOARD);
+        }
+        @Test
+        @DisplayName("should produce the expected next state board")
+        void shouldProduceTheExpectedNextState() {
+            // Given
+            int[][] seed = {
+                    {1, 0, 0},
+                    {0, 1, 0},
+                    {0, 0, 1}
+            };
+
+            int[][] expectedNextState = {
+                    {0, 0, 0},
+                    {0, 1, 0},
+                    {0, 0, 0}
+            };
+
+            Board sampleBoard = new Board(seed);
+            assertThat(sampleBoard.tick()).isEqualTo(expectedNextState);
         }
     }
 
