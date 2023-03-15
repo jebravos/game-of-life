@@ -12,7 +12,7 @@ public class Board {
 
     public int[][] tick() {
 
-        int[][] nextState = newEmptyBoard();
+        int[][] nextState = initializeNextState();
 
         for (int rowIndex = 0; rowIndex < this.board.length; rowIndex++) {
             final int[] row = this.board[rowIndex];
@@ -28,6 +28,10 @@ public class Board {
         return nextState;
     }
 
+    private int[][] initializeNextState() {
+        return new int[this.board.length][this.board[0].length];
+    }
+
     private long countAliveNeighbours(final int rowIndex, final int columnIndex) {
         return IntStream.of(
                         getCellState(rowIndex - 1, columnIndex - 1),
@@ -40,10 +44,6 @@ public class Board {
                         getCellState(rowIndex + 1, columnIndex + 1)
                 ).filter(state -> state != Cell.DEAD)
                 .count();
-    }
-
-    private int[][] newEmptyBoard() {
-        return new int[this.board.length][this.board[0].length];
     }
 
     public int getCellState(int rowIndex, int columnIndex) {

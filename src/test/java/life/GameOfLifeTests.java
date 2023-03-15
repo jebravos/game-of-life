@@ -1,5 +1,6 @@
 package life;
 
+import org.assertj.core.api.Int2DArrayAssert;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -27,24 +28,22 @@ class GameOfLifeTests {
         @Test
         @DisplayName("A board full of dead cells must remain dead after a tick")
         void returnsDeadBoardWhenAllCellsAreDead() {
-            // Given
-            Board allCellsDeadBoard = new Board(DEAD_BOARD);
 
+            Board allCellsDeadBoard = new Board(DEAD_BOARD);
             assertThat(allCellsDeadBoard.tick()).isEqualTo(DEAD_BOARD);
         }
 
         @Test
         @DisplayName("A cell without neighbours will die of underpopulation producing a dead board after a tick")
         void returnsDeadBoardWhenOnlyOneCellIsAlive() {
-            // Given
-            Board oneAliveBoard = new Board(ONE_ALIVE_BOARD);
 
+            Board oneAliveBoard = new Board(ONE_ALIVE_BOARD);
             assertThat(oneAliveBoard.tick()).isEqualTo(DEAD_BOARD);
         }
         @Test
         @DisplayName("should produce the expected next state board")
-        void shouldProduceTheExpectedNextState() {
-            // Given
+        void shouldProduceTheExpectedNextStateWithMoreComplexSeed1() {
+
             int[][] seed = {
                     {1, 0, 0},
                     {0, 1, 0},
@@ -55,6 +54,46 @@ class GameOfLifeTests {
                     {0, 0, 0},
                     {0, 1, 0},
                     {0, 0, 0}
+            };
+
+            Board sampleBoard = new Board(seed);
+            assertThat(sampleBoard.tick()).isEqualTo(expectedNextState);
+        }
+
+        @Test
+        @DisplayName("should produce the expected next state board")
+        void shouldProduceTheExpectedNextStateWithMoreComplexSeed2() {
+
+            int[][] seed = {
+                    {1, 0, 1},
+                    {0, 1, 0},
+                    {1, 0, 1}
+            };
+
+            int[][] expectedNextState = {
+                    {0, 1, 0},
+                    {1, 0, 1},
+                    {0, 1, 0}
+            };
+
+            Board sampleBoard = new Board(seed);
+            assertThat(sampleBoard.tick()).isEqualTo(expectedNextState);
+        }
+
+        @Test
+        @DisplayName("should produce the expected next state board")
+        void shouldProduceTheExpectedNextStateWithMoreComplexSeed3() {
+
+            int[][] seed = {
+                    {1, 0, 1},
+                    {1, 0, 0},
+                    {0, 1, 1}
+            };
+
+            int[][] expectedNextState = {
+                    {0, 1, 0},
+                    {1, 0, 1},
+                    {0, 1, 0}
             };
 
             Board sampleBoard = new Board(seed);
