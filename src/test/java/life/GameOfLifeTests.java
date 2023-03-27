@@ -17,8 +17,8 @@ class GameOfLifeTests {
             {0, 0, 0}
     };
     public static final int[][] ONE_ALIVE_BOARD = {
+            {1, 0, 0},
             {0, 0, 0},
-            {0, 1, 0},
             {0, 0, 0}
     };
 
@@ -39,6 +39,7 @@ class GameOfLifeTests {
             Board oneAliveBoard = new Board(ONE_ALIVE_BOARD);
             assertThat(oneAliveBoard.tick()).isEqualTo(DEAD_BOARD);
         }
+
         @Test
         @DisplayName("should produce the expected next state board")
         void shouldProduceTheExpectedNextStateWithMoreComplexSeed1() {
@@ -98,6 +99,7 @@ class GameOfLifeTests {
             Board sampleBoard = new Board(seed);
             assertThat(sampleBoard.tick()).isEqualTo(expectedNextState);
         }
+
     }
 
     @Nested
@@ -113,7 +115,6 @@ class GameOfLifeTests {
                     .forEach(state -> assertThat(state).isEqualTo(DEAD));
 
         }
-
 
         @DisplayName("Any live cell with more than three live neighbours dies, as if by overpopulation")
         @Test
@@ -135,7 +136,6 @@ class GameOfLifeTests {
                     .map(Cell::getNextState)
                     .forEach(state -> assertThat(state).isEqualTo(ALIVE));
         }
-
 
         @DisplayName("Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction")
         @Test

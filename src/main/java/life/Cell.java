@@ -40,7 +40,6 @@ public class Cell {
 
     public int getNextState() {
 
-
         if (isAlive() && (numberOfAliveNeighbours == 2 || numberOfAliveNeighbours == 3)) {
             return ALIVE;
         }
